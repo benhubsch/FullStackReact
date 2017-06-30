@@ -6,20 +6,26 @@ var dummyData = [{ taskText: "Wash the dishes", completed: false }, { taskText: 
 
 class TodoApp extends React.Component {
     constructor(props) {
-        super(props)
+        super(props) 
         this.state = {
             todos: []
         }
+        this.addTodo = this.addTodo.bind(this)
     }
 
     componentDidMount() {
         this.setState({todos: dummyData})
     }
 
+    addTodo(task) {
+        dummyData.push({taskText: task, completed: false})
+        this.setState({todos: dummyData})
+    }
+
     render() {
         return (
             <div>
-                <InputLine />
+                <InputLine submit={this.addTodo}/>
                 <TodoList todos={this.state.todos}/>
             </div>
         )
