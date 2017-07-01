@@ -6,7 +6,9 @@ class Todo extends React.Component {
     }
 
     render() {
-        var todoElement = this.props.completed ? <li><button>X</button><del>{' ' + this.props.taskText}</del></li> :<li><button>X</button>{' ' + this.props.taskText}</li>
+        var todoElement = this.props.completed ?
+                          <li><button onClick={this.props.xClick}>X</button><del onClick={this.props.toggleClick}>{' ' + this.props.taskText}</del></li>
+                          :<li><button onClick={this.props.xClick}>X</button><span onClick={this.props.toggleClick}>{' ' + this.props.taskText}</span></li>
         return (
             <div>
                 {todoElement}

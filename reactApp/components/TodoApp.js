@@ -11,6 +11,8 @@ class TodoApp extends React.Component {
             todos: []
         }
         this.addTodo = this.addTodo.bind(this)
+        this.removeTodo = this.removeTodo.bind(this)
+        this.toggleTodo = this.toggleTodo.bind(this)
     }
 
     componentDidMount() {
@@ -22,11 +24,21 @@ class TodoApp extends React.Component {
         this.setState({todos: dummyData})
     }
 
+    removeTodo(index) {
+        dummyData.splice(index, 1)
+        this.setState({todos: dummyData})
+    }
+
+    toggleTodo(index) {
+        dummyData[index].completed = ! dummyData[index].completed
+        this.setState({todos: dummyData})
+    }
+
     render() {
         return (
             <div>
-                <InputLine submit={this.addTodo}/>
-                <TodoList todos={this.state.todos}/>
+                <InputLine submit={this.addTodo} />
+                <TodoList todos={this.state.todos} todoToggle={this.toggleTodo} todoXClick={this.removeTodo} />
             </div>
         )
     }
